@@ -14,10 +14,7 @@ from bson.objectid import ObjectId
 from tinydb import Query, where
 from tinydb.operations import increment
 
-#from ZeroDB.ZeroTransaction import ZeroTransaction, ZeroTinyDB
-
-from AtomTinyDb.AtomTinyDbConn import AtomTinyDbConn
-from AtomTinyDb.AtomTinyDbLock import AtomTinyDbLock
+from AtomTinyDb import AtomTinyDbConn, AtomTinyDbLock
 
 def main():
 

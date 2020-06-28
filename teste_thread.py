@@ -13,8 +13,7 @@ import threading
 from datetime import datetime
 #from bson.objectid import ObjectId
 
-from AtomTinyDb.AtomTinyDbConn import AtomTinyDbConn
-from AtomTinyDb.AtomTinyDbLock import AtomTinyDbLock
+from AtomTinyDb import AtomTinyDbConn, AtomTinyDbLock
 
 class Thread_Test(object):
     def __init__(self, table_access, id, delay, espera):
