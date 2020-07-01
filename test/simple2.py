@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 '''
-Created on 20200323
+Created on 20200701
 Update on 20200701
 @author: Eduardo Pagotto
  '''
@@ -16,46 +16,42 @@ from bson.objectid import ObjectId
 from tinydb import Query, where
 from tinydb.operations import increment
 
-from AtomTinyDb import AtomTinyDbConn, AtomTinyDbLock
+from AtomTinyDb import AtomTinyDbConn#, AtomTinyDbLock
 
 def main():
 
     if not os.path.exists('./data'):
         os.makedirs('./data')
 
-    # criação
-    aDB = AtomTinyDbConn('./data/db_teste1.json', sort_keys=True, indent=4, separators=(',', ': '))
-    aDB.log.info('Iniciado')
-
-    #table = aDB.table('tabela01')
-
     try:
 
-        with AtomTinyDbLock(aDB.table('tabela01')) as db:
+        with AtomTinyDbConn('./data/db_teste2.json', sort_keys=True, indent=4, separators=(',', ': ')) as aDB:
+
+            tbl = aDB.table('tbl01')
 
             # inserção dado
-            val1 = db.insert({'id_data': str(ObjectId()),
+            val1 = tbl.insert({'id_data': str(ObjectId()),
                             'idade':10,
                             'status':0,
                             'nome':'Eduardo Pagotto',
                             'sexo':True,
                             'last':datetime.timestamp(datetime.now())})
 
-            val2 = db.insert({'id_data': str(ObjectId()),
+            val2 = tbl.insert({'id_data': str(ObjectId()),
                         'status':0,
                         'idade':51,
                         'nome':'Eduardo Pagotto',
                         'sexo':True,
                         'last':datetime.timestamp(datetime.now())})
 
-            val3 = db.insert({'id_data': str(ObjectId()),
+            val3 = tbl.insert({'id_data': str(ObjectId()),
                         'status':0,
                         'idade':55,
                         'nome':'Eduardo Pagotto',
                         'sexo':True,
                         'last':datetime.timestamp(datetime.now())})
 
-            val4 = db.insert({'id_data': str(ObjectId()),
+            val4 = tbl.insert({'id_data': str(ObjectId()),
                         'status':0,
                         'nome':'Eduardo Pagotto',
                         'sexo':False,
@@ -63,38 +59,38 @@ def main():
                         'last':datetime.timestamp(datetime.now())})
 
             # query com where
-            result2 = db.search(where('sexo') == False)
-            aDB.log.debug(str(result2))
+            result2 = tbl.search(where('sexo') == False)
+            logging.debug(str(result2))
 
             for item in result2:
-                db.update(increment('status'), where('id_data')==item['id_data'])
+                tbl.update(increment('status'), where('id_data')==item['id_data'])
 
             # query
             dados = Query()
 
-            result = db.search((dados.idade > 50) & (dados.sexo == True))
-            aDB.log.debug(str(result))
+            result = tbl.search((dados.idade > 50) & (dados.sexo == True))
+            logging.debug(str(result))
 
             ultimo = None
             for item in result:
                 # update
                 novo = {'last': datetime.timestamp(datetime.now()), 'status':3}
-                db.update(novo, where('id_data')==item['id_data'])
+                tbl.update(novo, where('id_data')==item['id_data'])
                 ultimo = item
 
-            db.remove(dados.id_data == ultimo['id_data'])
+            tbl.remove(dados.id_data == ultimo['id_data'])
 
-            lista_existe = db.search(where('id_data') == ultimo['id_data'])
+            lista_existe = tbl.search(where('id_data') == ultimo['id_data'])
 
             # Mostra tudo
-            result = db.all()
-            aDB.log.debug(str(result))
+            result = tbl.all()
+
+            logging.debug(str(result))
 
     except Exception as exp:
-        aDB.log.error('erro: %s', str(exp))
+        logging.error('erro: %s', str(exp))
 
-    aDB.close()
-    aDB.log.info('fim')
+    logging.info('fim')
 
 if __name__ == "__main__":
 

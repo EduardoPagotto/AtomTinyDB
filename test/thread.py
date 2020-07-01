@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 '''
 Created on 20200324
-Update on 20200627
+Update on 20200701
 @author: Eduardo Pagotto
  '''
+
+#pylint: disable=C0301, C0116, W0703, C0103, C0115
 
 import os
 import time
@@ -36,7 +38,7 @@ class Thread_Test(object):
             with AtomTinyDbLock(self.table_access) as db:
                 time.sleep(self.espara)
 
-                self.log.debug('Executa %d', self.id)
+                self.log.debug('Executa insert %d', self.id)
 
                 db.insert({'id_data': self.id,#str(ObjectId()),
                             'idade':10,
@@ -63,7 +65,7 @@ def main():
     lista_classes = []
     lista_threads = []
 
-    for indice in range(2):
+    for indice in range(5):
         lista_classes.append(Thread_Test(aDb.table('tabela01'), indice, 1, 5))
 
     for item in lista_classes:

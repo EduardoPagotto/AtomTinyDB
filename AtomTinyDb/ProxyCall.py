@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200627
-Update on 20200628
+Update on 20200701
 @author: Eduardo Pagotto
  '''
 
@@ -17,6 +17,6 @@ class ProxyCall(object):
         self.count = count
 
     def __call__(self, *args, **kargs):
-        self.log.debug('ProxyCall %d: func: %s, args: %s, kargs:%s', self.count, str(self.function), str(args), str(kargs))
+        #self.log.debug('ProxyCall %d: func: %s, args: %s, kargs:%s', self.count, str(self.function), str(args), str(kargs))
         function = getattr(self.table, self.function)
         return function(*args, **kargs)

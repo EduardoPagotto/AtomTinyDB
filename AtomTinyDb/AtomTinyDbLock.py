@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200627
-Update on 20200627
+Update on 20200701
 @author: Eduardo Pagotto
  '''
 
@@ -10,13 +10,8 @@ Update on 20200627
 import logging
 import threading
 
+from AtomTinyDb.Abort import AbortSignal
 from AtomTinyDb.ProxyCall import ProxyCall
-
-class AbortSignal(Exception):
-    pass
-
-def abort():
-    raise AbortSignal
 
 class AtomTinyDbLock(object):
 
@@ -33,18 +28,18 @@ class AtomTinyDbLock(object):
             self.mutex_access = table[0]
             self.table = table[1]
             self.log = logging.getLogger('AtomTinyDb')
-            self.log.debug('Transaction %d', self.count)
+            #self.log.debug('Transaction %d', self.count)
 
     def __enter__(self):
-        self.log.debug('acquire %d', self.count)
+        #self.log.debug('acquire %d', self.count)
         self.mutex_access.acquire()
-        self.log.debug('acquired %d', self.count)
+        #self.log.debug('acquired %d', self.count)
         return self
 
     def __exit__(self, type, value, traceback):
         #if not traceback: # FIXME: ver como se comporta no crash
         self.mutex_access.release()
-        self.log.debug('release %d', self.count)
+        #self.log.debug('release %d', self.count)
         return isinstance(value, AbortSignal)
 
     def __getattr__(self, name):
