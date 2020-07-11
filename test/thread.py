@@ -32,7 +32,7 @@ class Thread_Test(object):
 
         self.log.debug('Begin: %d', self.id)
 
-        time.sleep(self.delay)
+        #time.sleep(self.delay)
 
         try:
             with AtomTinyDbLock(self.table_access) as db:
@@ -50,7 +50,7 @@ class Thread_Test(object):
         except Exception as exp:
             self.log.error('erro %d: %s', self.id, str(exp))
 
-        time.sleep(10)
+        #time.sleep(10)
 
         self.log.debug('End: %d', self.id)
 
