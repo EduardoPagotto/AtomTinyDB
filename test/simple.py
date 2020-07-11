@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200323
-Update on 20200701
+Update on 20200710
 @author: Eduardo Pagotto
  '''
 
@@ -35,39 +35,39 @@ def main():
 
             # inserção dado
             val1 = db.insert({'id_data': str(ObjectId()),
-                            'idade':10,
-                            'status':0,
-                            'nome':'Eduardo Pagotto',
-                            'sexo':True,
-                            'last':datetime.timestamp(datetime.now())})
+                              'idade':10,
+                              'status':0,
+                              'nome':'Eduardo Pagotto',
+                              'sexo':True,
+                              'last':datetime.timestamp(datetime.now())})
 
             val2 = db.insert({'id_data': str(ObjectId()),
-                        'status':0,
-                        'idade':51,
-                        'nome':'Eduardo Pagotto',
-                        'sexo':True,
-                        'last':datetime.timestamp(datetime.now())})
+                              'status':0,
+                              'idade':51,
+                              'nome':'Eduardo Pagotto',
+                              'sexo':True,
+                              'last':datetime.timestamp(datetime.now())})
 
             val3 = db.insert({'id_data': str(ObjectId()),
-                        'status':0,
-                        'idade':55,
-                        'nome':'Eduardo Pagotto',
-                        'sexo':True,
-                        'last':datetime.timestamp(datetime.now())})
+                              'status':0,
+                              'idade':55,
+                              'nome':'Eduardo Pagotto',
+                              'sexo':True,
+                              'last':datetime.timestamp(datetime.now())})
 
             val4 = db.insert({'id_data': str(ObjectId()),
-                        'status':0,
-                        'nome':'Eduardo Pagotto',
-                        'sexo':False,
-                        'idade':30,
-                        'last':datetime.timestamp(datetime.now())})
+                              'status':0,
+                              'nome':'Eduardo Pagotto',
+                              'sexo':False,
+                              'idade':30,
+                              'last':datetime.timestamp(datetime.now())})
 
             # query com where
             result2 = db.search(where('sexo') == False)
             aDB.log.debug(str(result2))
 
             for item in result2:
-                db.update(increment('status'), where('id_data')==item['id_data'])
+                db.update(increment('status'), where('id_data') == item['id_data'])
 
             # query
             dados = Query()
@@ -79,7 +79,7 @@ def main():
             for item in result:
                 # update
                 novo = {'last': datetime.timestamp(datetime.now()), 'status':3}
-                db.update(novo, where('id_data')==item['id_data'])
+                db.update(novo, where('id_data') == item['id_data'])
                 ultimo = item
 
             db.remove(dados.id_data == ultimo['id_data'])

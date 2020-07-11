@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200701
-Update on 20200701
+Update on 20200710
 @author: Eduardo Pagotto
  '''
 
@@ -31,32 +31,32 @@ def main():
 
             # inserção dado
             val1 = tbl.insert({'id_data': str(ObjectId()),
-                            'idade':10,
-                            'status':0,
-                            'nome':'Eduardo Pagotto',
-                            'sexo':True,
-                            'last':datetime.timestamp(datetime.now())})
+                               'idade':10,
+                               'status':0,
+                               'nome':'Eduardo Pagotto',
+                               'sexo':True,
+                               'last':datetime.timestamp(datetime.now())})
 
             val2 = tbl.insert({'id_data': str(ObjectId()),
-                        'status':0,
-                        'idade':51,
-                        'nome':'Eduardo Pagotto',
-                        'sexo':True,
-                        'last':datetime.timestamp(datetime.now())})
+                               'status':0,
+                               'idade':51,
+                               'nome':'Eduardo Pagotto',
+                               'sexo':True,
+                               'last':datetime.timestamp(datetime.now())})
 
             val3 = tbl.insert({'id_data': str(ObjectId()),
-                        'status':0,
-                        'idade':55,
-                        'nome':'Eduardo Pagotto',
-                        'sexo':True,
-                        'last':datetime.timestamp(datetime.now())})
+                               'status':0,
+                               'idade':55,
+                               'nome':'Eduardo Pagotto',
+                               'sexo':True,
+                               'last':datetime.timestamp(datetime.now())})
 
             val4 = tbl.insert({'id_data': str(ObjectId()),
-                        'status':0,
-                        'nome':'Eduardo Pagotto',
-                        'sexo':False,
-                        'idade':30,
-                        'last':datetime.timestamp(datetime.now())})
+                               'status':0,
+                               'nome':'Eduardo Pagotto',
+                               'sexo':False,
+                               'idade':30,
+                               'last':datetime.timestamp(datetime.now())})
 
             # query com where
             result2 = tbl.search(where('sexo') == False)
@@ -75,7 +75,7 @@ def main():
             for item in result:
                 # update
                 novo = {'last': datetime.timestamp(datetime.now()), 'status':3}
-                tbl.update(novo, where('id_data')==item['id_data'])
+                tbl.update(novo, where('id_data') == item['id_data'])
                 ultimo = item
 
             tbl.remove(dados.id_data == ultimo['id_data'])

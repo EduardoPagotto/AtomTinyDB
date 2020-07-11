@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200324
-Update on 20200701
+Update on 20200710
 @author: Eduardo Pagotto
  '''
 
@@ -18,9 +18,9 @@ from datetime import datetime
 from AtomTinyDb import AtomTinyDbConn, AtomTinyDbLock
 
 class Thread_Test(object):
-    def __init__(self, table_access, id, delay, espera):
+    def __init__(self, table_access, idVal, delay, espera):
         self.table_access = table_access
-        self.id = id
+        self.id = idVal
         self.log = logging.getLogger('Test')
         self.delay = delay
         self.espara = espera
@@ -41,14 +41,14 @@ class Thread_Test(object):
                 self.log.debug('Executa insert %d', self.id)
 
                 db.insert({'id_data': self.id,#str(ObjectId()),
-                            'idade':10,
-                            'status':0,
-                            'nome':'Eduardo Pagotto',
-                            'sexo':True,
-                            'last':datetime.timestamp(datetime.now())})
+                           'idade':10,
+                           'status':0,
+                           'nome':'Eduardo Pagotto',
+                           'sexo':True,
+                           'last':datetime.timestamp(datetime.now())})
 
         except Exception as exp:
-            self.log.error('erro %d: %s',self.id, str(exp))
+            self.log.error('erro %d: %s', self.id, str(exp))
 
         time.sleep(10)
 
@@ -69,12 +69,12 @@ def main():
         lista_classes.append(Thread_Test(aDb.table('tabela01'), indice, 1, 5))
 
     for item in lista_classes:
-        lista_threads.append(threading.Thread(target=item, name= item.get_name()))
+        lista_threads.append(threading.Thread(target=item, name=item.get_name()))
 
     for item in lista_threads:
         item.start()
 
-    while len(lista_threads) !=0:
+    while len(lista_threads) != 0:
         for item in lista_threads:
             item.join()
             lista_threads.remove(item)

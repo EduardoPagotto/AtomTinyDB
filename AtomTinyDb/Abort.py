@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200701
-Update on 20200701
+Update on 20200710
 @author: Eduardo Pagotto
  '''
 
@@ -10,5 +10,5 @@ Update on 20200701
 class AbortSignal(Exception):
     pass
 
-def abort():
+def abort() -> AbortSignal:
     raise AbortSignal
