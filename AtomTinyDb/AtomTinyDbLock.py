@@ -1,15 +1,10 @@
-#!/usr/bin/env python3
 '''
 Created on 20200627
-Update on 20200710
+Update on 20200928
 @author: Eduardo Pagotto
  '''
 
-#pylint: disable=C0301, C0116, W0703, C0103, C0115
-
-import logging
 from threading import Lock
-
 from typing import Union, Tuple
 
 from tinydb.table import Table
@@ -40,7 +35,7 @@ class AtomTinyDbLock(object):
 
             self.mutex_access: Lock = table[0]
             self.table = table[1]
-            self.log = logging.getLogger('AtomTinyDb')
+            #self.log = logging.getLogger('AtomTinyDb')
             #self.log.debug('Transaction %d', self.count)
 
     def __enter__(self):

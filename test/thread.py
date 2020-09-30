@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 '''
 Created on 20200324
-Update on 20200710
+Update on 20200928
 @author: Eduardo Pagotto
  '''
-
-#pylint: disable=C0301, C0116, W0703, C0103, C0115
 
 import os
 import time

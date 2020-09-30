@@ -130,3 +130,4 @@ dmypy.json
 
 # Data test .json
 /data
+/.vscode

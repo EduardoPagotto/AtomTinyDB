@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200323
-Update on 20200627
+Update on 20200928
 @author: Eduardo Pagotto
  '''
 

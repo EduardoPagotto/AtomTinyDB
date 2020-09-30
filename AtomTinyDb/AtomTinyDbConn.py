@@ -1,16 +1,10 @@
-#!/usr/bin/env python3
 '''
 Created on 20200627
-Update on 20200710
+Update on 20200928
 @author: Eduardo Pagotto
  '''
 
-#pylint: disable=C0301, C0116, W0703, C0103, C0115
-
-import logging
-#import threading
 from threading import Lock
-
 from typing import Set, Tuple
 
 from tinydb import TinyDB
@@ -28,7 +22,7 @@ class AtomTinyDbConn(object):
         """
         self.db = TinyDB(*args, **kargs)
         self.mutex_access = Lock()
-        self.log = logging.getLogger('AtomTinyDb')
+        #self.log = logging.getLogger('AtomTinyDb')
 
     def table(self, *args, **kwargs) -> Tuple[Lock, Table]:
         """[Retorna Lock e objeto Tabela]
