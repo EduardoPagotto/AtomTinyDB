@@ -2,23 +2,149 @@
     "folders": [
         {
             "path": "."
+        },
+        {
+            "path": "../Zero"
         }
     ],
     "settings": {
         "python.linting.mypyEnabled": true,
-		"python.linting.enabled": true,
-		"editor.minimap.enabled": false
-	},
-	"launch": {
-		"version": "0.2.0",
-		"configurations": [
-			{
-				"name": "Python: Arquivo Atual",
-				"type": "python",
-				"request": "launch",
-				"program": "${file}",
-				"console": "integratedTerminal"
-			}
-		]
-	}
+        "python.linting.enabled": true,
+        "editor.minimap.enabled": false,
+        "python.autoComplete.extraPaths": [
+            "./AtomTinyDb"
+        ],
+        "python.analysis.extraPaths": [
+            "./AtomTinyDb"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Python: Arquivo Atual",
+                "type": "python",
+                "request": "launch",
+                "program": "${file}",
+                "console": "integratedTerminal"
+            }
+        ]
+    },
+    "tasks": {
+        "version": "2.0.0",
+        "tasks": [
+            {
+                "label": "Empacotar",
+                "command": "python3",
+                "args": [
+                    "setup.py",
+                    "sdist",
+                    "bdist_wheel"
+                ],
+                "type": "shell",
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "new",
+                    "focus": true
+                },
+                "problemMatcher": []
+            },
+            {
+                "label": "Deploy",
+                "command": "twine",
+                "args": [
+                    "upload",
+                    "--verbose",
+                    "-r",
+                    "local",
+                    "dist/*.gz"
+                ],
+                "type": "shell",
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "new",
+                    "focus": true
+                },
+                "problemMatcher": []
+            },
+            {
+                "label": "Clean",
+                "command": "rm",
+                "args": [
+                    "-rf",
+                    "build",
+                    "dist",
+                    "*.egg-info"
+                ],
+                "type": "shell",
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "new",
+                    "focus": true
+                },
+                "problemMatcher": []
+            },
+            {
+                "label": "Run File",
+                "command": "python ${file}",
+                "type": "shell",
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "new",
+                    "focus": true
+                }
+            },
+            {
+                "label": "Make Clean Project",
+                "type": "shell",
+                "command": "cd ${workspaceFolder}",
+                "args": [
+                    "make",
+                    "clean"
+                ],
+                "group": {
+                    "kind": "build",
+                    "isDefault": true
+                },
+                "presentation": {
+                    "echo": true,
+                    "reveal": "always",
+                    "focus": false,
+                    "panel": "shared",
+                    "showReuseMessage": true,
+                    "clear": false
+                }
+            },
+            {
+                "label": "nosetest",
+                "command": "nosetests -v",
+                "type": "shell",
+                "group": {
+                    "kind": "test",
+                    "isDefault": true
+                },
+                "presentation": {
+                    "reveal": "always",
+                    "panel": "new",
+                    "focus": true
+                }
+            }
+        ]
+    }
 }

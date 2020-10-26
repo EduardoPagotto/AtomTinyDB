@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 '''
 Created on 20200323
-Update on 20200928
+Update on 20201026
 @author: Eduardo Pagotto
  '''
 
 import setuptools
 
-PACKAGE = "AtomTinyDB"
-VERSION = __import__(PACKAGE).__version__
+#PACKAGE = "AtomTinyDB"
+#VERSION = __import__(PACKAGE).__version__
+VERSION = "0.0.4"
 
 setuptools.setup(
     name="AtomTinyDB",
@@ -26,5 +27,5 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent"
     ],
-    install_requires=['tinydb']
+    install_requires=['tinydb', 'pymongo', 'mypy']
 )

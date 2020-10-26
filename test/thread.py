@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20200324
-Update on 20200928
+Update on 20201025
 @author: Eduardo Pagotto
  '''
 
@@ -58,7 +58,10 @@ def main():
         os.makedirs('./data')
 
     aDb = AtomTinyDbConn('./data/db_threads.json')
-    aDb.log.info('Iniciado')
+
+    log = logging.getLogger('Test')
+
+    log.info('Iniciado')
 
     lista_classes = []
     lista_threads = []
@@ -78,6 +81,8 @@ def main():
             lista_threads.remove(item)
             break
         time.sleep(1)
+
+        log.info('Finalizado')
 
 if __name__ == "__main__":
 
