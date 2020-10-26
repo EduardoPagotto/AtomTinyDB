@@ -1,6 +1,26 @@
 # AtomTinyDB
 An simple TinyDB atomic API call's
 
+## Setup the venv
+```bash
+python3 -m venv venv
+source ./venv/bin/activate
+pip3 install -r requirements.txt
+pip3 list
+deactivate
+```
+
+## Install global
+```bash
+python3 -m setup.py install
+```
+
+## Install venv
+```bash
+source ./venv/bin/activate
+./setup.py install
+```
+
 ### Test simple call's
 Just using call's of tinydb method
 ```bash
