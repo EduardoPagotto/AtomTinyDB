@@ -67,7 +67,8 @@ def main():
             log.debug(str(result2))
 
             for item in result2:
-                db.update(increment('status'), where('id_data') == item['id_data'])
+                val_up = db.update(increment('status'), where('id_data') == item['id_data'])
+                log.debug('update: {0}'.format(str(val_up)))
 
             # query
             dados = Query()

@@ -27,5 +27,11 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent"
     ],
-    install_requires=['tinydb', 'pymongo', 'mypy']
+    install_requires=['mypy',
+                      'mypy-extensions',
+                      'pymongo',
+                      'tinydb',
+                      'typed-ast',
+                      'typing-extensions'
+                    ]
 )
